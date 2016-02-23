@@ -16,7 +16,6 @@
 
 <!--    <script async src="http://www.google-analytics.com/analytics.js"></script>-->
     <style>
-      img {max-width: 100px;}
       body {background: #fff;}
       header, footer, .container {max-width: 45em; margin: 0 auto; }
     </style>
@@ -26,11 +25,10 @@
   <body>
     <header>
 <!--TODO REMOVE IMG 'src' and use JS to detect screen size, then replace 'src' URL-->
-      <a href="/"><img class="nonMobile-View" src="img/Pilot-profile-md.jpg"></a>
-<!--      <a href="/"><img class="mobile-View" src="img/Pilot-profile-sm.jpg"></a>-->
+<!--    <a href="/"><img class="" src="img/Pilot-profile-md.jpg"></a>    -->
+      <img class="" src="img/Pilot-profile-xs.jpg">
       <p>Erin Macalligan<br><span>Front End Web-Development Nano-Degree Student</span></p>
     </header>
-
     <div class="container">
       <div class="hero">
         <strong>I love web development!</strong> This is a template for a simple portfolio. I decided to use it to showcase a few Udacity courses I've taken and some teaching work, but you can use it to showcase any kind of project that you want the world to see :) <br> Contact me: me@email.com
@@ -72,11 +70,7 @@
       <script async>
         /*=======================
         = GOOGLE's OPTIMIZE CSS =
-        =        source         =
-        = https://developers.   =
-        = google.com/speed/docs =
-        = /insights/            =
-        = OptimizeCSSDelivery   =
+        =   source in README    =
         =======================*/
         var cbCSS = function() {
           var l = document.createElement('link'); l.rel = 'stylesheet';
@@ -87,7 +81,9 @@
           webkitRequestAnimationFrame || msRequestAnimationFrame;
         if (raf) raf(cbCSS);
         else window.addEventListener('load', cbCSS);
-
+        var prfPic = function() {
+          var picH = document.getElementByTagName
+        }
 
         /*==================
         = GOOGLE ANALYTICS =
