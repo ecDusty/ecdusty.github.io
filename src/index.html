@@ -18,15 +18,43 @@
     <style>
       body {background: #fff;}
       header, footer, .container {max-width: 45em; margin: 0 auto; }
+      #welcome, #welcome h1 {
+        position: fixed;
+        width: 100%;
+        left: 0;
+      }
+      #welcome {
+        transition: all 2s;
+        -webkit-transition: all 2s;
+        -moz-transition: all 2s;
+        -o-transition: all 2s;
+        z-index: 50;
+        top: 0;
+        height: 100%;
+        background-color: darkgrey;
+        text-align: center;
+      }
+      #welcome h1 {
+        transition: all 1s;
+        -webkit-transition: all 1s;
+        -moz-transition: all 1s;
+        -o-transition: all 1s;
+        z-index: 51;
+        top: 38%;
+        color: #fff;
+      }
     </style>
     <script async src="js/perfmatters.js"></script>
   </head>
 
   <body>
+    <div id="welcome">
+      <h1><strong>WELCOME</strong></h1>
+    </div>
     <header>
 <!--TODO REMOVE IMG 'src' and use JS to detect screen size, then replace 'src' URL-->
 <!--    <a href="/"><img class="" src="img/Pilot-profile-md.jpg"></a>    -->
-      <img class="" src="img/Pilot-profile-xs.jpg">
+      <img id="profPic" src="">
       <p>Erin Macalligan<br><span>Front End Web-Development Nano-Degree Student</span></p>
     </header>
     <div class="container">
@@ -55,7 +83,7 @@
           </li>
 
           <li>
-            <img src="views/images/pizzeria-sm.jpg">
+            <img src="img/pizzeria-xs.jpg">
             <a href="views/pizza.html">Cam's Pizzeria</a>
             <p>Who wants a performant pizza?</p>
           </li>
@@ -65,37 +93,44 @@
 
 
     <footer>
-      <p>&copy; Web Performance 2014 <span id="crp-stats"></span></p>
+      <p>&copy; Web Performance 2016 <span id="crp-stats"></span></p>
     </footer>
-      <script async>
-        /*=======================
-        = GOOGLE's OPTIMIZE CSS =
-        =   source in README    =
-        =======================*/
-        var cbCSS = function() {
-          var l = document.createElement('link'); l.rel = 'stylesheet';
-          l.href = 'css/style.css';
-          var h = document.getElementsByTagName('head')[0]; h.parentNode.insertBefore(l, h);
-        };
-        var raf = requestAnimationFrame || mozRequestAnimationFrame ||
-          webkitRequestAnimationFrame || msRequestAnimationFrame;
-        if (raf) raf(cbCSS);
-        else window.addEventListener('load', cbCSS);
-        var prfPic = function() {
-          var picH = document.getElementByTagName
-        }
+    <script>
+      /*=======================
+      =    Set Profile Pic    =
+      =       After Load      =
+      =======================*/
+      (function() {
+        var picH = document.getElementById('profPic');
+        picH.src = 'img/Pilot-profile-xs.jpg';
+      })();
 
-        /*==================
-        = GOOGLE ANALYTICS =
-        ==================*/
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-                                })
-        (window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      /*==================
+      = GOOGLE ANALYTICS =
+      ==================*/
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })
+      (window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-        ga('create', 'UA-74101644-2', 'auto');
-        ga('send', 'pageview');
-      </script>
+      ga('create', 'UA-74101644-2', 'auto');
+      ga('send', 'pageview');
+    </script>
+    <script async>
+      /*=======================
+      = GOOGLE's OPTIMIZE CSS =
+      =   source in README    =
+      =======================*/
+      var cbCSS = function() {
+        var l = document.createElement('link'); l.rel = 'stylesheet';
+        l.href = 'css/style.css';
+        var h = document.getElementsByTagName('head')[0]; h.parentNode.insertBefore(l, h);
+      };
+      var raf = requestAnimationFrame || mozRequestAnimationFrame ||
+        webkitRequestAnimationFrame || msRequestAnimationFrame;
+      if (raf) raf(cbCSS);
+      else window.addEventListener('load', cbCSS);
+    </script>
   </body>
 </html>
