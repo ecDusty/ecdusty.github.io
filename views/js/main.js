@@ -559,13 +559,7 @@ function updatePositions() {
   }
 }
 
-// runs updatePositions on scroll
-window.addEventListener('scroll', updatePositions);
-
-
-// Generates the sliding pizzas when the page loads.
-document.addEventListener('DOMContentLoaded', function() {
-
+function createPizzas () {
   /* Cross browser supported code that will grab the windows Height & Width*/
   var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 
@@ -585,4 +579,10 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelector("#movingPizzas1").appendChild(elem);
   }
   updatePositions();
-});
+}
+
+// runs updatePositions on scroll
+window.addEventListener('scroll', updatePositions);
+
+// Generates the sliding pizzas when the page loads.
+createPizzas();
