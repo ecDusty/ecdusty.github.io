@@ -1,0 +1,23 @@
+<!DOCTYPE html><html><head><title>Geocoding service</title><meta name="viewport" content="initial-scale=1,user-scalable=no"><meta charset="utf-8"><style>html,
+      body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        height: 100%;
+      }
+      #floating-panel {
+        position: absolute;
+        top: 10px;
+        left: 65%;
+        z-index: 5;
+        height:90%;
+        background-color: #fff;
+        padding: 5px;
+        border: 1px solid #999;
+        text-align: center;
+        font-family: 'Roboto','sans-serif';
+        line-height: 30px;
+        padding-left: 10px;
+      }</style></head><body><div id="floating-panel"><input id="address" type="textbox" value="Red Fort, Delhi"> <input id="submit" type="button" value="Geocode"><div id="firstComponent"></div><div id="secondComponent"></div></div><div id="map"></div><script>function initMap(){var e=new google.maps.Map(document.getElementById("map"),{zoom:8,center:{lat:-34.397,lng:150.644}}),o=new google.maps.Geocoder;document.getElementById("submit").addEventListener("click",function(){geocodeAddress(o,e)})}function geocodeAddress(e,n){var o=document.getElementById("address").value;e.geocode({address:o},function(e,o){o===google.maps.GeocoderStatus.OK?(n.setCenter(e[0].geometry.location),document.getElementById("firstComponent").innerHTML="The Formatted Address is:",document.getElementById("secondComponent").innerHTML="The Location is"):alert("Geocode was not successful for the following reason: "+o)})}</script><script async defer="defer" src="https://maps.googleapis.com/maps/api/js?v=3&key=XXX&callback=initMap"></script></body></html>
