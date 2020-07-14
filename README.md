@@ -6,4 +6,4 @@ Should you have any questions please feel free to contact me.
 
 
 
-[Udacity-Portfolio]: <https://github.com/ecDusty/Udacity-FEND-Projects> "Erin Mulligan's Mobile Portfolio"
+[Udacity-Portfolio]: <https://github.com/ecDusty/Udacity-FEND-Projects> "Erin Macalligan's Mobile Portfolio"
