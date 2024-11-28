@@ -86,7 +86,7 @@
     const fileSelector = document.getElementById('file-selector');
     const fileQrResult = document.getElementById('file-qr-result');
 	const popUp = document.getElementById('floating-button');
-    const dingSound = new Audio('/media/ding.mp3');
+    const dingSound = new Audio('/app/media/ding.mp3');
 	let scanState = false;
 
     function setResult(label, result) {
@@ -97,9 +97,10 @@
         clearTimeout(label.highlightTimeout);
         label.highlightTimeout = setTimeout(() => label.style.color = 'inherit', 100);
 		if (scanState == false) {
-			scanState = true;
+			//scanState = true;
 			popUp.classList.add('show');
             dingSound.play();
+            setTimeout(() => scanState = true, 500);
 		}
     }
 
