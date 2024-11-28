@@ -154,6 +154,7 @@
 
 	document.getElementById('reset-qr').addEventListener('click', () => {
 		popUp.classList.remove('show');
+		scanState = false;
     });
 
     document.getElementById('inversion-mode-select').addEventListener('change', event => {
