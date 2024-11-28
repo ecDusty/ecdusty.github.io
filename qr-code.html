@@ -11,7 +11,7 @@
 <div id="video-container">
     <video id="qr-video" disablepictureinpicture="" playsinline=""></video><div class="scan-region-highlight" style="position: absolute; display: none; pointer-events: none;"><svg class="scan-region-highlight-svg" viewBox="0 0 238 238" preserveAspectRatio="none" style="position:absolute;width:100%;height:100%;left:0;top:0;fill:none;stroke:#e9b213;stroke-width:4;stroke-linecap:round;stroke-linejoin:round"><path d="M31 2H10a8 8 0 0 0-8 8v21M207 2h21a8 8 0 0 1 8 8v21m0 176v21a8 8 0 0 1-8 8h-21m-176 0H10a8 8 0 0 1-8-8v-21"></path></svg><svg class="code-outline-highlight" preserveAspectRatio="none" style="display:none;width:100%;height:100%;fill:none;stroke:#e9b213;stroke-width:5;stroke-dasharray:25;stroke-linecap:round;stroke-linejoin:round"><polygon></polygon></svg></div>
 </div>
-<div class=""display-none">
+<div class="display-none">
     <label>
         Highlight Style
         <select id="scan-region-highlight-style-select">
@@ -25,7 +25,7 @@
         Show scan region canvas
     </label>
 </div>
-<div class=""display-none">
+<div class="display-none">
     <select id="inversion-mode-select">
         <option value="original">Scan original (dark QR code on bright background)</option>
         <option value="invert">Scan with inverted colors (bright QR code on dark background)</option>
@@ -66,9 +66,8 @@
 <span id="file-qr-result">None</span>
 </div>
 
-<div class="floating-button">
-
-	<button id="reset-qr">Stop</button>
+<div id="floating-button">
+	<button id="reset-qr">Completed</button>
 </div>
 
 <script type="module">
@@ -85,6 +84,8 @@
     const camQrResultTimestamp = document.getElementById('cam-qr-result-timestamp');
     const fileSelector = document.getElementById('file-selector');
     const fileQrResult = document.getElementById('file-qr-result');
+	const popUp = document.getElementById('floating-button');
+	let scanState = false;
 
     function setResult(label, result) {
         console.log(result.data);
@@ -93,7 +94,10 @@
         label.style.color = 'teal';
         clearTimeout(label.highlightTimeout);
         label.highlightTimeout = setTimeout(() => label.style.color = 'inherit', 100);
-
+		if (scanState == false) {
+			scanState = true;
+			popUp.classList.add('show');
+		}
     }
 
     // ####### Web Cam Scanning #######
@@ -107,14 +111,14 @@
         highlightCodeOutline: true,
     });
 
-	let scanState = false;
-
     const updateFlashAvailability = () => {
         scanner.hasFlash().then(hasFlash => {
             camHasFlash.textContent = hasFlash;
             flashToggle.style.display = hasFlash ? 'inline-block' : 'none';
         });
     };
+
+
 
     scanner.start().then(() => {
         updateFlashAvailability();
@@ -145,6 +149,10 @@
         const label = input.parentNode;
         label.parentNode.insertBefore(scanner.$canvas, label.nextSibling);
         scanner.$canvas.style.display = input.checked ? 'block' : 'none';
+    });
+
+	document.getElementById('reset-qr').addEventListener('click', () => {
+		popUp.classList.remove('show');
     });
 
     document.getElementById('inversion-mode-select').addEventListener('change', event => {
