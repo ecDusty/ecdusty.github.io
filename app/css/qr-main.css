@@ -27,3 +27,12 @@ h1 {
     position: absolute;
     background-color: rgb(46, 46, 56);
 }
+
+.camera-perf {
+    position: absolute;
+    left: 5%;
+    bottom: 40px;
+    background-color: white;
+    padding: 15px;
+    border-radius: 15px;
+}

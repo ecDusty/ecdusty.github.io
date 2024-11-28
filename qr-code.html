@@ -11,7 +11,7 @@
 <div id="video-container">
     <video id="qr-video" disablepictureinpicture="" playsinline=""></video><div class="scan-region-highlight" style="position: absolute; display: none; pointer-events: none;"><svg class="scan-region-highlight-svg" viewBox="0 0 238 238" preserveAspectRatio="none" style="position:absolute;width:100%;height:100%;left:0;top:0;fill:none;stroke:#e9b213;stroke-width:4;stroke-linecap:round;stroke-linejoin:round"><path d="M31 2H10a8 8 0 0 0-8 8v21M207 2h21a8 8 0 0 1 8 8v21m0 176v21a8 8 0 0 1-8 8h-21m-176 0H10a8 8 0 0 1-8-8v-21"></path></svg><svg class="code-outline-highlight" preserveAspectRatio="none" style="display:none;width:100%;height:100%;fill:none;stroke:#e9b213;stroke-width:5;stroke-dasharray:25;stroke-linecap:round;stroke-linejoin:round"><polygon></polygon></svg></div>
 </div>
-<div>
+<div class=""display-none">
     <label>
         Highlight Style
         <select id="scan-region-highlight-style-select">
@@ -25,24 +25,25 @@
         Show scan region canvas
     </label>
 </div>
-<div>
+<div class=""display-none">
     <select id="inversion-mode-select">
         <option value="original">Scan original (dark QR code on bright background)</option>
         <option value="invert">Scan with inverted colors (bright QR code on dark background)</option>
         <option value="both">Scan both</option>
     </select>
     <br>
+	<b>Device has camera: </b>
+	<span id="cam-has-camera">true</span>
+	<br>
 </div>
-<b>Device has camera: </b>
-<span id="cam-has-camera">true</span>
-<br>
-<div>
-    <b>Preferred camera:</b>
+<div class="camera-perf">
+    <b>Camera:</b>
     <select id="cam-list">
         <option value="environment" selected="">Environment Facing (default)</option>
         <option value="user">User Facing</option>
     <option value="2daddda6093f35e95b1116f1c235948b0350baa9ead38a04e345083f54f27329">Camera (NVIDIA Broadcast)</option><option value="1012b21f864d8bc592adc5d42334fb55649246058f7ae558f90e2416ecd16a4b">OBS Virtual Camera</option></select>
 </div>
+<div class="display-none">
 <b>Camera has flash: </b>
 <span id="cam-has-flash">false</span>
 <div>
@@ -63,7 +64,7 @@
 <input type="file" id="file-selector">
 <b>Detected QR code: </b>
 <span id="file-qr-result">None</span>
-
+</div>
 <script type="module">
     import QrScanner from "/app/js/qr-scanner.min.js";
 
@@ -86,6 +87,7 @@
         label.style.color = 'teal';
         clearTimeout(label.highlightTimeout);
         label.highlightTimeout = setTimeout(() => label.style.color = 'inherit', 100);
+
     }
 
     // ####### Web Cam Scanning #######
@@ -98,6 +100,8 @@
         highlightScanRegion: true,
         highlightCodeOutline: true,
     });
+
+	let scanState = false;
 
     const updateFlashAvailability = () => {
         scanner.hasFlash().then(hasFlash => {
