@@ -97,10 +97,9 @@
         clearTimeout(label.highlightTimeout);
         label.highlightTimeout = setTimeout(() => label.style.color = 'inherit', 100);
 		if (scanState == false) {
-			//scanState = true;
+			scanState = true;
 			popUp.classList.add('show');
             dingSound.play();
-            setTimeout(() => scanState = true, 500);
 		}
     }
 
